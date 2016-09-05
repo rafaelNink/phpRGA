@@ -16,3 +16,14 @@ Route::get('/', function () {
 });
 
 Route::resource('pessoas', 'PessoaController');
+Route::resource("pagars","PagarController");
+Route::resource("recebimentos","RecebimentoController");
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+
+
+
+

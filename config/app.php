@@ -153,6 +153,9 @@ return [
         /*
          * Package Service Providers...
          */
+         Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
+         Amranidev\Ajaxis\AjaxisServiceProvider::class,
+         Spatie\Permission\PermissionServiceProvider::class,
 
 
         /*

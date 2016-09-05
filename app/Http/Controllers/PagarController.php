@@ -3,10 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Pessoa;
+use App\Pagar;
 use Illuminate\Http\Request;
 
-class PessoaController extends Controller {
+class PagarController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,9 +15,9 @@ class PessoaController extends Controller {
 	 */
 	public function index()
 	{
-		$pessoas = Pessoa::orderBy('id', 'desc')->paginate(10);
+		$pagars = Pagar::orderBy('id', 'desc')->paginate(10);
 
-		return view('pessoas.index', compact('pessoas'));
+		return view('pagars.index', compact('pagars'));
 	}
 
 	/**
@@ -27,7 +27,7 @@ class PessoaController extends Controller {
 	 */
 	public function create()
 	{
-		return view('pessoas.create');
+		return view('pagars.create');
 	}
 
 	/**
@@ -38,14 +38,13 @@ class PessoaController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$pessoa = new Pessoa();
+		$pagar = new Pagar();
 
-		$pessoa->nome = $request->input("nome");
-        $pessoa->endereco = $request->input("endereco");
+		$pagar->title = $request->input("title");
 
-		$pessoa->save()	;
+		$pagar->save();
 
-		return redirect()->route('pessoas.index')->with('message', 'Item created successfully.');
+		return redirect()->route('pagars.index')->with('message', 'Item created successfully.');
 	}
 
 	/**
@@ -56,9 +55,9 @@ class PessoaController extends Controller {
 	 */
 	public function show($id)
 	{
-		$pessoa = Pessoa::findOrFail($id);
+		$pagar = Pagar::findOrFail($id);
 
-		return view('pessoas.show', compact('pessoa'));
+		return view('pagars.show', compact('pagar'));
 	}
 
 	/**
@@ -69,9 +68,9 @@ class PessoaController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$pessoa = Pessoa::findOrFail($id);
+		$pagar = Pagar::findOrFail($id);
 
-		return view('pessoas.edit', compact('pessoa'));
+		return view('pagars.edit', compact('pagar'));
 	}
 
 	/**
@@ -83,14 +82,13 @@ class PessoaController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
-		$pessoa = Pessoa::findOrFail($id);
+		$pagar = Pagar::findOrFail($id);
 
-		$pessoa->nome = $request->input("nome");
-        $pessoa->endereco = $request->input("endereco");
+		$pagar->title = $request->input("title");
 
-		$pessoa->save();
+		$pagar->save();
 
-		return redirect()->route('pessoas.index')->with('message', 'Item updated successfully.');
+		return redirect()->route('pagars.index')->with('message', 'Item updated successfully.');
 	}
 
 	/**
@@ -101,10 +99,10 @@ class PessoaController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$pessoa = Pessoa::findOrFail($id);
-		$pessoa->delete();
+		$pagar = Pagar::findOrFail($id);
+		$pagar->delete();
 
-		return redirect()->route('pessoas.index')->with('message', 'Item deleted successfully.');
+		return redirect()->route('pagars.index')->with('message', 'Item deleted successfully.');
 	}
 
 }
